@@ -1,0 +1,17 @@
+{
+  "namespace": "de.codecentric.pjmeisch.sbkavro.avro",
+  "type" : "record",
+  "name": "Person",
+  "fields": [
+    {
+      "name": "lastName",
+      "type": "string",
+      "doc": "the last name of a person"
+    },
+    {
+      "name": "firstName",
+      "type": "string",
+      "doc": "the first name of a person"
+    }
+  ]
+}

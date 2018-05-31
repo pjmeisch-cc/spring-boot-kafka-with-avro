@@ -1,0 +1,15 @@
+spring.kafka:
+    bootstrap-servers: "localhost:9092"
+
+    properties:
+      schema.registry.url: "http://localhost:8081"
+      specific.avro.reader: true
+
+    consumer:
+      group-id: ${random.uuid}
+      key-deserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
+      value-deserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
+
+    producer:
+      key-serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
+      value-serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"

@@ -4,18 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.codecentric.pjmeisch.sbkavro</groupId>
-    <artifactId>parent</artifactId>
+    <groupId>de.codecentric.pjmeisch</groupId>
+    <artifactId>sbkavro-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <description>sample project demonstrating using spring boot with kafka and the avro schema registry</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
 
+        <confluent.version>4.0.0</confluent.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>confluent</id>
+            <url>http://packages.confluent.io/maven</url>
+        </repository>
+    </repositories>
     <modules>
         <module>common</module>
+        <module>producer</module>
     </modules>
 </project>

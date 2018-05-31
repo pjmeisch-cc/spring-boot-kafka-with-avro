@@ -1,0 +1,27 @@
+{
+  "namespace": "de.codecentric.pjmeisch.sbkavro.avro",
+  "type" : "record",
+  "name": "Address",
+  "fields": [
+    {
+      "name": "zip",
+      "type": "string",
+      "doc": "the zip of a address"
+    },
+    {
+      "name": "city",
+      "type": "string",
+      "doc": "the city of a address"
+    },
+    {
+      "name": "street",
+      "type": "string",
+      "doc": "the street of a address"
+    },
+    {
+      "name": "streetNumber",
+      "type": "string",
+      "doc": "the street number of a address"
+    }
+  ]
+}
