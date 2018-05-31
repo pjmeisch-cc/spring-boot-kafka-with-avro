@@ -11,7 +11,7 @@ After downloading and unpacking I start (on macOS) the required components (Zook
 
     mvn spring-boot:run
     
-is all what is needed. It starts up the program, sets up a KafkaListener, produces the confugred number of records 
+is all what is needed. It starts up the program, sets up a KafkaListener, produces the configured number of records 
 into Kafka, consumes them and then shuts down the Listener and so ends the program.
 
 sample run:
