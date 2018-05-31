@@ -13,3 +13,5 @@ spring.kafka:
     producer:
       key-serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
       value-serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
+
+de.codecentric.sbkaavro.topic: "persons"

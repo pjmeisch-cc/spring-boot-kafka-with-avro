@@ -1,5 +1,5 @@
 {
-  "namespace": "de.codecentric.pjmeisch.sbkavro.avro",
+  "namespace": "de.codecentric.sbkaavro.avro",
   "type" : "record",
   "name": "Person",
   "fields": [

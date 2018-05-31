@@ -1,13 +1,11 @@
-/*
- * (c) Copyright 2018 sothawo
- */
-package de.codecentric.pjmeisch.sbkavro.producer;
+package de.codecentric.sbkaavro;
 
-import de.codecentric.pjmeisch.sbkavro.avro.Address;
-import de.codecentric.pjmeisch.sbkavro.avro.Person;
+import de.codecentric.sbkaavro.avro.Address;
+import de.codecentric.sbkaavro.avro.Person;
 import io.codearte.jfairy.Fairy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -16,14 +14,13 @@ import org.springframework.stereotype.Component;
 import java.util.Locale;
 import java.util.stream.IntStream;
 
-/**
- * @author P.J. Meisch (pj.meisch@sothawo.com)
- */
 @Component
 public class DataProducer implements ApplicationRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(DataProducer.class);
-
     private final KafkaTemplate<Person, Address> kafka;
+    private final Fairy fairy = Fairy.create(Locale.GERMANY);
+    @Value("${de.codecentric.sbkaavro.topic}")
+    private String topic;
 
     public DataProducer(
             @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection") KafkaTemplate<Person, Address> kafka) {
@@ -32,9 +29,6 @@ public class DataProducer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-
-        final Fairy fairy = Fairy.create(Locale.GERMANY);
-
         IntStream.rangeClosed(1, 10).boxed()
                 .map(i -> fairy.person())
                 .forEach(f -> {
@@ -50,8 +44,7 @@ public class DataProducer implements ApplicationRunner {
                             .build();
 
                     LOGGER.info("producing {}, {}", person, address);
-
-                    kafka.send("persons", person, address);
+                    kafka.send(topic, person, address);
                 });
     }
 }
