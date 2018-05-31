@@ -19,8 +19,11 @@ public class DataProducer implements ApplicationRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(DataProducer.class);
     private final KafkaTemplate<Person, Address> kafka;
     private final Fairy fairy = Fairy.create(Locale.GERMANY);
+
     @Value("${de.codecentric.sbkaavro.topic}")
     private String topic;
+    @Value("${de.codecentric.sbkaavro.records}")
+    private Integer numRecords = 1;
 
     public DataProducer(
             @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection") KafkaTemplate<Person, Address> kafka) {
@@ -29,7 +32,7 @@ public class DataProducer implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        IntStream.rangeClosed(1, 10).boxed()
+        IntStream.rangeClosed(1, numRecords).boxed()
                 .map(i -> fairy.person())
                 .forEach(f -> {
                     Person person = Person.newBuilder()
